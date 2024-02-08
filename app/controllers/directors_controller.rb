@@ -11,13 +11,13 @@ class DirectorsController < ApplicationController
   end
 
   def show_youngest
-    matching_directors=Director.all
+    matching_directors=Director.where.not(:dob=>nil)
     @youngest_director = matching_directors.order({:dob => :desc}).at(0)
     render(:template => "director_templates/youngest")
   end
 
   def show_eldest
-    matching_directors=Director.all
+    matching_directors=Director.where.not(:dob=>nil)
     @eldest_director = matching_directors.order({:dob => :asc}).at(0)
     render(:template => "director_templates/eldest")
   end
